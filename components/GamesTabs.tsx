@@ -106,7 +106,7 @@ export function GamesTabs() {
               key={app.name}
               className="flex flex-col items-center text-center"
             >
-              <div className="w-16 h-16 bg-muted rounded-xl mb-2 flex items-center justify-center">
+              <div className="w-16 h-16  rounded-xl mb-2 flex items-center justify-center">
                 <Image
                   src={app.img}
                   alt={app.name}

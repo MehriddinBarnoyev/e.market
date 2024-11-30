@@ -15,18 +15,18 @@ import React from "react";
 export function Sidebar() {
   const menuItems = [
     {
-      href: "/dashboard",
+      href: "/",
       icon: <LayoutDashboard />,
       label: "Панель управления",
     },
-    { href: "/orders", icon: <ShoppingCart />, label: "Заказы", badge: 8 },
-    { href: "/categories", icon: <FolderTree />, label: "Категории" },
-    { href: "/products", icon: <Package />, label: "Товары" },
-    { href: "/users", icon: <Users />, label: "Пользователи" },
-    { href: "/feedback", icon: <MessageSquare />, label: "КонтрОК" },
-    { href: "/analytics", icon: <BarChart />, label: "Аналитика" },
-    { href: "/advertising", icon: <Megaphone />, label: "Реклама" },
-    { href: "/settings", icon: <Settings />, label: "Настройки" },
+    { href: "/admin/orders", icon: <ShoppingCart />, label: "Заказы", badge: 8 },
+    { href: "/admin/categories", icon: <FolderTree />, label: "Категории" },
+    { href: "/admin/products", icon: <Package />, label: "Товары" },
+    { href: "/admin/users", icon: <Users />, label: "Пользователи" },
+    { href: "/admin/contract", icon: <MessageSquare />, label: "КонтрОК" },
+    { href: "/admin/analitcs", icon: <BarChart />, label: "Аналитика" },
+    { href: "/admin/adds", icon: <Megaphone />, label: "Реклама" },
+    { href: "/admin/settings", icon: <Settings />, label: "Настройки" },
   ];
 
   return (
