@@ -19,14 +19,14 @@ export function Sidebar() {
       icon: <LayoutDashboard />,
       label: "Панель управления",
     },
-    { href: "/admin/orders", icon: <ShoppingCart />, label: "Заказы", badge: 8 },
-    { href: "/admin/categories", icon: <FolderTree />, label: "Категории" },
-    { href: "/admin/products", icon: <Package />, label: "Товары" },
-    { href: "/admin/users", icon: <Users />, label: "Пользователи" },
-    { href: "/admin/contract", icon: <MessageSquare />, label: "КонтрОК" },
-    { href: "/admin/analitcs", icon: <BarChart />, label: "Аналитика" },
-    { href: "/admin/adds", icon: <Megaphone />, label: "Реклама" },
-    { href: "/admin/settings", icon: <Settings />, label: "Настройки" },
+    { href: "/profile/orders", icon: <ShoppingCart />, label: "Заказы", badge: 8 },
+    { href: "/profile/categories", icon: <FolderTree />, label: "Категории" },
+    { href: "/profile/products", icon: <Package />, label: "Товары" },
+    { href: "/profile/users", icon: <Users />, label: "Пользователи" },
+    { href: "/profile/contract", icon: <MessageSquare />, label: "КонтрОК" },
+    { href: "/profile/analitics", icon: <BarChart />, label: "Аналитика" },
+    { href: "/profile/adds", icon: <Megaphone />, label: "Реклама" },
+    { href: "/profile/settings", icon: <Settings />, label: "Настройки" },
   ];
 
   return (

@@ -31,7 +31,7 @@ export default function OrdersPage() {
                 <TableCell>{order.user}</TableCell>
                 <TableCell>{order.amount}</TableCell>
                 <TableCell>
-                  <Badge variant={order.status === 'Выполнен' ? 'success' : 'secondary'}>
+                  <Badge >
                     {order.status}
                   </Badge>
                 </TableCell>

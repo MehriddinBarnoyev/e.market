@@ -2,12 +2,6 @@ import Image from "next/image";
 import { Search, Plus, MessageSquare, User } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import {
-  NavigationMenu,
-  NavigationMenuItem,
-  NavigationMenuLink,
-  NavigationMenuList,
-} from "@/components/ui/navigation-menu";
 import Link from "next/link";
 
 const categories = [
@@ -59,7 +53,7 @@ export function MainNavbar() {
             <Button variant="ghost" size="icon" className="text-gray-400 ">
               <MessageSquare className="h-5 w-5" />
             </Button>
-            <Link href={"admin"}>
+            <Link href={"profile"}>
             <Button variant="ghost" size="icon" className="text-gray-400 ">
               <User className="h-5 w-5" />
             </Button>

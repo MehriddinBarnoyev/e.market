@@ -4,7 +4,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 const games = [
   {
     name: "Roblox",
-    img: "https://download.logo.wine/logo/Roblox/Roblox-Logo.wine.png",
+    img: "https://devforum-uploads.s3.dualstack.us-east-2.amazonaws.com/uploads/optimized/4X/f/7/c/f7c9f2a9f31bf5748c52fa1087126828a5333ac8_2_500x500.png",
   },
   {
     name: "Fortnite",
@@ -83,9 +83,9 @@ export function GamesTabs() {
           {games.map((game) => (
             <div
               key={game.name}
-              className="flex flex-col items-center text-center"
+              className="flex flex-col items-center cursor-pointer text-center"
             >
-              <div className="w-16 h-16 bg-muted rounded-xl mb-2 flex items-center justify-center">
+              <div className="w-16 h-16  rounded-xl mb-2 flex items-center justify-center">
                 <Image
                   src={game.img}
                   alt={game.name}
@@ -104,7 +104,7 @@ export function GamesTabs() {
           {apps.map((app) => (
             <div
               key={app.name}
-              className="flex flex-col items-center text-center"
+              className="flex flex-col items-center cursor-pointer text-center"
             >
               <div className="w-16 h-16  rounded-xl mb-2 flex items-center justify-center">
                 <Image
