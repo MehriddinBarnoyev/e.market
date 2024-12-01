@@ -46,9 +46,6 @@ const games = [
     name: "Discord",
     img: "https://logos-world.net/wp-content/uploads/2020/12/Discord-Logo.png",
   },
-];
-
-const apps = [
   {
     name: "Telegram",
     img: "https://upload.wikimedia.org/wikipedia/commons/thumb/8/83/Telegram_2019_Logo.svg/2048px-Telegram_2019_Logo.svg.png",
@@ -66,7 +63,6 @@ const apps = [
     img: "https://img.freepik.com/premium-vector/youtube-logo-with-red-square_876006-17.jpg",
   },
 ];
-
 export function GamesTabs() {
   return (
     <Tabs defaultValue="games" className="mb-12">
@@ -80,7 +76,7 @@ export function GamesTabs() {
       </TabsList>
       <TabsContent value="games">
         <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6 lg:grid-cols-8 gap-4 mt-6">
-          {games.map((game) => (
+          {games.slice(0,10).map((game) => (
             <div
               key={game.name}
               className="flex flex-col items-center cursor-pointer text-center"
@@ -101,7 +97,7 @@ export function GamesTabs() {
       </TabsContent>
       <TabsContent value="apps">
         <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6 lg:grid-cols-8 gap-4 mt-6">
-          {apps.map((app) => (
+          {games.slice(11).map((app) => (
             <div
               key={app.name}
               className="flex flex-col items-center cursor-pointer text-center"

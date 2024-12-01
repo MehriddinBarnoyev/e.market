@@ -4,14 +4,14 @@ export default function AdminCategories() {
   return (
     <AdminLayout>
       <h1 className="mb-6 text-3xl font-bold">Категории</h1>
-      <div className="rounded-lg bg-gray-800 p-6">
+      <div className="rounded-lg  p-6">
         <div className="mb-4 flex justify-between">
-          <input type="text" placeholder="Поиск категорий" className="rounded bg-gray-700 px-4 py-2" />
+          <input type="text" placeholder="Поиск категорий" className="rounded  px-4 py-2" />
           <button className="rounded bg-blue-500 px-4 py-2 hover:bg-blue-600">Добавить категорию</button>
         </div>
         <table className="w-full">
           <thead>
-            <tr>
+            <tr className="border">
               <th className="p-2 text-left">ID</th>
               <th className="p-2 text-left">Название</th>
               <th className="p-2 text-left">Количество товаров</th>

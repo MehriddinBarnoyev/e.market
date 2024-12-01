@@ -1,45 +1,193 @@
-import { AdminLayout } from '../components/layout/admin-layout'
-import { Card, CardContent, CardFooter } from "@/components/ui/card"
-import { Button } from "@/components/ui/button"
-import Image from "next/image"
+import { AdminLayout } from "../components/layout/admin-layout";
+import { Card, CardHeader } from "@/components/ui/card";
+import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
+import { Star, CheckCircle2 } from "lucide-react";
+import Image from "next/image";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 
 const products = [
-  { id: 1, name: 'Product 1', description: 'Description for Product 1', price: '10.99 ₽', imgs:"https://hips.hearstapps.com/hmg-prod/images/gh-best-skincare-products-6557978b58b57.png?crop=0.502xw:1.00xh;0.256xw,0&resize=640:*"},
-  { id: 2, name: 'Product 2', description: 'Description for Product 2', price: '19.99 ₽', imgs:"https://www.timeoutabudhabi.com/cloud/timeoutabudhabi/2021/10/11/ozhG7gZI-gaming-gear-1200x800.jpg"},
-  { id: 3, name: 'Product 3', description: 'Description for Product 3', price: '15.99 ₽', imgs:"https://images.immediate.co.uk/production/volatile/sites/3/2020/06/best-ps4-accessories-43287ea.jpg?quality=90&resize=620,414"},
-  { id: 4, name: 'Product 4', description: 'Description for Product 4', price: '25.99 ₽', imgs:"https://media.licdn.com/dms/image/D4D12AQG2jMnE6VTJNA/article-cover_image-shrink_600_2000/0/1692181683749?e=2147483647&v=beta&t=ejlmpckB1OWmiJ4zcKOgt6VHWYWMc8l4xIGA5DNZ1XY"},
-  { id: 5, name: 'Product 5', description: 'Description for Product 5', price: '30.99 ₽', imgs:"https://s3-ap-southeast-1.amazonaws.com/cdn.gamestheshop.com/boxart/c963f2e2-4bd1-4936-8102-3c77e1168241.jpg"},
-  { id: 6, name: 'Product 6', description: 'Description for Product 6', price: '12.99 ₽', imgs:"https://fbi.cults3d.com/uploads/collection/shot_en/94/XBOX_ONE_STEERING_WHEEL_FOR_WIRED_CONTROLLERS.jpg"},
-]
+  {
+    id: 1,
+    title: "Minecraft",
+    subtitle: "Premium Account",
+    category: "Games",
+    image: "https://target.scene7.com/is/image/Target/GUEST_b98e9dc0-6f29-41e3-ae20-13182d3007f0?wid=668&qlt=80&fmt=png",
+    price: 450,
+    oldPrice: 600,
+    discount: "-25%",
+    description: "🎮 Full access to a premium Minecraft account.",
+    rating: 4.9,
+    reviews: 3200,
+    watermark: "Minecraft Premium",
+    status: "Available",
+    seller: {
+      name: "BlockCraft",
+      avatar:
+      "https://cdn-icons-png.flaticon.com/512/3135/3135715.png",
+      verified: true,
+    },
+  },
+  {
+    id: 2,
+    title: "FIFA 24",
+    subtitle: "Ultimate Team Coins",
+    category: "Digital Currency",
+    image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ5auJ8EsHfpzZ4xl_46-P3pWdn4uJEDVF4CA&s",
+    price: 500,
+    oldPrice: 750,
+    discount: "-33%",
+    description: "⚽ 100,000 FUT coins for your FIFA account.",
+    rating: 4.7,
+    reviews: 1800,
+    watermark: "FIFA 24 Coins",
+    status: "Available",
+    seller: {
+      name: "CoinMaster",
+      avatar:
+        "https://cdn-icons-png.flaticon.com/512/3135/3135715.png",
+      verified: true,
+    },
+  },
+  {
+    id: 3,
+    title: "Call of Duty",
+    subtitle: "Weapon Skins Pack",
+    category: "Accessories",
+    image: "https://wallpapers.com/images/featured/call-of-duty-pictures-7lrqnchbx478ucgg.jpg",
+    price: 299,
+    oldPrice: 399,
+    discount: "-25%",
+    description: "🔥 Unlock exclusive weapon skins.",
+    rating: 5.0,
+    reviews: 120,
+    watermark: "COD Skins",
+    status: "Available",
+    seller: {
+      name: "SkinStore",
+      avatar: "https://cdn-icons-png.flaticon.com/512/236/236831.png",
+      verified: false,
+    },
+  },
+  {
+    id: 4,
+    title: "Valorant",
+    subtitle: "Battle Pass",
+    category: "Subscriptions",
+    image:
+      "https://platform.polygon.com/wp-content/uploads/sites/2/chorus/uploads/chorus_asset/file/19874924/VALORANT_Jett_Red_crop.jpg?quality=90&strip=all&crop=13.957157090668,0,72.085685818665,100",
+    price: 120,
+    oldPrice: 150,
+    discount: "-20%",
+    description: "🎯 Unlock premium Battle Pass tiers.",
+    rating: 4.8,
+    reviews: 950,
+    watermark: "Valorant Pass",
+    status: "Available",
+    seller: {
+      name: "Valor Sellers",
+      avatar:
+        "https://cdn-icons-png.flaticon.com/512/147/147144.png",
+      verified: true,
+    },
+  },
+ 
+];
+
+
+
+function StarRating({ rating, size = 4 }: { rating: number; size?: number }) {
+  return (
+    <div className="flex items-center gap-0.5">
+      {[...Array(5)].map((_, i) => (
+        <Star
+          key={i}
+          className={`h-${size} w-${size} ${
+            i < rating
+              ? "fill-yellow-500 text-yellow-500"
+              : "fill-zinc-800 text-zinc-800"
+          }`}
+        />
+      ))}
+    </div>
+  );
+}
 
 export default function ProductsPage() {
   return (
     <AdminLayout>
-      <h1 className="text-3xl font-bold mb-6">Товары</h1>
-      <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+      <div className="flex items-center justify-between mb-6">
+        <h1 className="text-3xl font-bold">Товары</h1>
+      </div>
+      <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
         {products.map((product) => (
-          <Card key={product.id} className="bg-zinc-800/50 border-zinc-700">
-            <CardContent className="p-4">
-              <div className="aspect-square  relative rounded-md overflow-hidden mb-4">
-                <Image
-                  src={product.imgs}
-                  alt={product.name}
-                  layout="fill"
-                  objectFit="cover"
-                />
+          <div
+            key={product.id}
+            className="group relative overflow-hidden rounded-lg bg-zinc-900 cursor-pointer"
+          >
+            {/* Header with title and category */}
+            <div className="absolute top-0 left-0 right-0 z-20 flex items-start p-3">
+              {/* Seller avatar */}
+              <Avatar>
+                <AvatarImage src={product.seller.avatar} />
+                <AvatarFallback>{product.status.slice(0,1)}</AvatarFallback>
+              </Avatar>
+              <div>
+                <h3 className="text-sm font-medium text-white">
+                  {product.title}
+                </h3>
+                <p className="text-xs text-zinc-400">{product.category}</p>
               </div>
-              <h3 className="font-semibold text-white mb-2">{product.name}</h3>
-              <p className="text-sm text-zinc-400 mb-2 ">{product.description}</p>
-              <p className="font-bold text-white">{product.price}</p>
-            </CardContent>
-            <CardFooter className="flex justify-between">
-              <Button variant="outline" size="sm">Редактировать</Button>
-              <Button variant="destructive" size="sm">Удалить</Button>
-            </CardFooter>
-          </Card>
+            </div>
+
+            {/* Main image */}
+            <div className=" aspect-[4/3] w-full">
+              <Image
+                src={product.image}
+                alt={product.title}
+                fill
+                className="object-cover"
+              />
+              {/* Gradient overlay */}
+              <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent" />
+            </div>
+
+            {/* Product info overlay */}
+            <div className="absolute bottom-0 left-0 right-0 z-20 p-3">
+              {/* Price and discount */}
+              <div className="flex items-center gap-2 mb-1">
+                <span className="text-lg font-bold text-white">
+                  {product.price} ₽
+                </span>
+                <span className="text-sm text-zinc-400 line-through">
+                  {product.oldPrice}
+                </span>
+                <span className="text-xs font-medium text-red-500">
+                  {product.discount}
+                </span>
+              </div>
+
+              {/* Description */}
+              <p className="text-sm text-zinc-300 mb-1">
+                {product.description}
+              </p>
+
+              {/* Rating */}
+              <div className="flex items-center gap-1">
+                <StarRating rating={product.rating} />
+                <span className="text-xs text-zinc-400">
+                  ({product.reviews})
+                </span>
+              </div>
+
+              {/* Watermark */}
+              <div className="absolute bottom-2 right-2 text-xs text-zinc-600">
+                {product.watermark}
+              </div>
+            </div>
+          </div>
         ))}
       </div>
     </AdminLayout>
-  )
+  );
 }
-

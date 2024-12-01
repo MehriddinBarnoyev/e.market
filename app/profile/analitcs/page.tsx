@@ -110,11 +110,11 @@ const analyticsData = [
 export default function AnalyticsPage() {
   return (
     <AdminLayout>
-      <div className="grid gap-6">
+      <div className="grid gap-6 ">
         <div className="flex items-center justify-between">
           <h1 className="text-2xl font-bold">Analytics Overview</h1>
         </div>
-        <Card className="bg-zinc-900 text-white border-zinc-800">
+        <Card className="bg-dark text-white border-zinc-800">
           <CardHeader>
             <CardTitle className="text-lg font-medium">Key Metrics</CardTitle>
           </CardHeader>
@@ -187,7 +187,7 @@ export default function AnalyticsPage() {
               key !== "month" && (
                 <Card
                   key={key}
-                  className="bg-zinc-900 text-white border-zinc-800"
+                  className="bg-dark text-white border-zinc-800"
                 >
                   <CardHeader>
                     <CardTitle className="text-sm font-medium capitalize">
