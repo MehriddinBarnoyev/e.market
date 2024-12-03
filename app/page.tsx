@@ -1,5 +1,6 @@
 import { CategoryNav } from "@/components/CategoryNav"
-import { GamesTabs } from "@/components/GamesTabs"
+import GameCard from "@/components/game-grid"
+import GamesTabs from "@/components/GamesTabs"
 import { PromotionalCards } from "@/components/PromationalCards"
 
 export default function Home() {
@@ -9,6 +10,7 @@ export default function Home() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         <PromotionalCards />
         <GamesTabs />
+        <GameCard/>
       </div>
     </div>
   )

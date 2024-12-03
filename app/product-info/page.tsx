@@ -1,11 +1,15 @@
-import React from 'react'
+"use client";
 
-const page = () => {
-  return (
-    <div>
-      
-    </div>
-  )
-}
+import React from "react";
 
-export default page
+const Page = () => {
+  
+    return (
+      <div>
+        <h1>Product Info</h1>
+        
+      </div>
+    );
+};
+
+export default Page;

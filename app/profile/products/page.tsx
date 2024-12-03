@@ -1,7 +1,4 @@
 import { AdminLayout } from "../components/layout/admin-layout";
-import { Card, CardHeader } from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
-import { Button } from "@/components/ui/button";
 import { Star, CheckCircle2 } from "lucide-react";
 import Image from "next/image";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
@@ -12,7 +9,8 @@ const products = [
     title: "Minecraft",
     subtitle: "Premium Account",
     category: "Games",
-    image: "https://target.scene7.com/is/image/Target/GUEST_b98e9dc0-6f29-41e3-ae20-13182d3007f0?wid=668&qlt=80&fmt=png",
+    image:
+      "https://target.scene7.com/is/image/Target/GUEST_b98e9dc0-6f29-41e3-ae20-13182d3007f0?wid=668&qlt=80&fmt=png",
     price: 450,
     oldPrice: 600,
     discount: "-25%",
@@ -23,8 +21,7 @@ const products = [
     status: "Available",
     seller: {
       name: "BlockCraft",
-      avatar:
-      "https://cdn-icons-png.flaticon.com/512/3135/3135715.png",
+      avatar: "https://cdn-icons-png.flaticon.com/512/3135/3135715.png",
       verified: true,
     },
   },
@@ -33,7 +30,8 @@ const products = [
     title: "FIFA 24",
     subtitle: "Ultimate Team Coins",
     category: "Digital Currency",
-    image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ5auJ8EsHfpzZ4xl_46-P3pWdn4uJEDVF4CA&s",
+    image:
+      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ5auJ8EsHfpzZ4xl_46-P3pWdn4uJEDVF4CA&s",
     price: 500,
     oldPrice: 750,
     discount: "-33%",
@@ -44,8 +42,7 @@ const products = [
     status: "Available",
     seller: {
       name: "CoinMaster",
-      avatar:
-        "https://cdn-icons-png.flaticon.com/512/3135/3135715.png",
+      avatar: "https://cdn-icons-png.flaticon.com/512/3135/3135715.png",
       verified: true,
     },
   },
@@ -54,7 +51,8 @@ const products = [
     title: "Call of Duty",
     subtitle: "Weapon Skins Pack",
     category: "Accessories",
-    image: "https://wallpapers.com/images/featured/call-of-duty-pictures-7lrqnchbx478ucgg.jpg",
+    image:
+      "https://wallpapers.com/images/featured/call-of-duty-pictures-7lrqnchbx478ucgg.jpg",
     price: 299,
     oldPrice: 399,
     discount: "-25%",
@@ -74,8 +72,7 @@ const products = [
     title: "Valorant",
     subtitle: "Battle Pass",
     category: "Subscriptions",
-    image:
-      "https://platform.polygon.com/wp-content/uploads/sites/2/chorus/uploads/chorus_asset/file/19874924/VALORANT_Jett_Red_crop.jpg?quality=90&strip=all&crop=13.957157090668,0,72.085685818665,100",
+    image: "https://files.oaiusercontent.com/file-KbnNHKGqumSQLmTxpamXSf?se=2024-12-02T03%3A42%3A03Z&sp=r&sv=2024-08-04&sr=b&rscc=max-age%3D604800%2C%20immutable%2C%20private&rscd=attachment%3B%20filename%3Ddf0c062f-406e-4d26-85ad-e438c3234c52.webp&sig=z0x1tSMcKM9qRi30U7UuZWezVW922jjM8bvPJuQwubM%3D",
     price: 120,
     oldPrice: 150,
     discount: "-20%",
@@ -86,15 +83,11 @@ const products = [
     status: "Available",
     seller: {
       name: "Valor Sellers",
-      avatar:
-        "https://cdn-icons-png.flaticon.com/512/147/147144.png",
+      avatar: "https://cdn-icons-png.flaticon.com/512/147/147144.png",
       verified: true,
     },
   },
- 
 ];
-
-
 
 function StarRating({ rating, size = 4 }: { rating: number; size?: number }) {
   return (
@@ -130,7 +123,7 @@ export default function ProductsPage() {
               {/* Seller avatar */}
               <Avatar>
                 <AvatarImage src={product.seller.avatar} />
-                <AvatarFallback>{product.status.slice(0,1)}</AvatarFallback>
+                <AvatarFallback>{product.status.slice(0, 1)}</AvatarFallback>
               </Avatar>
               <div>
                 <h3 className="text-sm font-medium text-white">
