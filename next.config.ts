@@ -18,6 +18,26 @@ const domains = [
   "img.freepik.com",
   "images.immediate.co.uk",
   "thumbs.dreamstime.com",
+  "pbs.twlogo.com",
+  "logo.freepik.com",
+  "i.guim.co.uk",
+  "cdn2.unrealengine.com",
+  "i.ytimg.com",
+  "lh3.googleusercontent.com",
+  "store-images.s-microsoft.com",
+  "play-lh.googleusercontent.com",
+  "images.unsplash.com",
+  "images.pexels.com",
+  "images.ctfassets.net",
+  "images.prismic.io",
+  "img.redbull.com",
+  "assetsio.gnwcdn.com" ,
+  "www.pcworld.com",
+  "sun9-79.userapi.com",
+  "c8.alamy.com",
+  "www.rusalia.com",
+  "maurisweb.ru",
+  
 ];
 const nextConfig: NextConfig = {
   images: {

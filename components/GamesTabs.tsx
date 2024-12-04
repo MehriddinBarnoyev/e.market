@@ -22,15 +22,16 @@ const GamesTabs = () => {
               className="flex flex-col items-center cursor-pointer text-center"
             >
               <Link
-                href={`/product-info?name=${encodeURIComponent(game.name)}`}
+                href={`/product-info?${game.id}`}
               >
                 <div className="w-16 h-16 rounded-xl mb-2 flex items-center justify-center">
                   <Image
-                    src={game.img}
-                    alt={game.name}
+                    src={game.logo}
+                    alt="game"
                     width={48}
                     height={48}
                     className="rounded-xl"
+                    key={game.id}
                   />
                 </div>
                 <span className="text-sm text-muted-foreground">
@@ -42,17 +43,17 @@ const GamesTabs = () => {
         </div>
       </TabsContent>
       <TabsContent value="apps">
-        <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6 lg:grid-cols-8 gap-4 mt-6">
-          {games.slice(11).map((app) => (
+        <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6 lg:grid-cols-8 gap-4 mt-6" key={"spom"}>
+          {games.slice(11, 14).map((app) => (
             <div
               key={app.name}
               className="flex flex-col items-center cursor-pointer text-center"
             >
-              <Link href={`/product-info?name=${encodeURIComponent(app.name)}`}>
+              <Link href={`/product-info?${app.id}`}>
                 <div className="w-16 h-16 rounded-xl mb-2 flex items-center justify-center">
                   <Image
-                    src={app.img}
-                    alt={app.name}
+                    src={app.logo}
+                    alt="game"
                     width={48}
                     height={48}
                     className="rounded-xl"

@@ -17,7 +17,7 @@ const categories = [
 
 export function MainNavbar() {
   return (
-    <nav className="bg-[#000] border-b border-border">
+    <nav className="bg-[#000] border-b border-border ">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
           <div className="flex items-center space-x-2">
@@ -56,7 +56,7 @@ export function MainNavbar() {
             <Button variant="ghost" size="icon" className="text-gray-400 ">
               <MessageSquare className="h-5 w-5" />
             </Button>
-            <Link href={"profile"}>
+            <Link href={"user-profile"}>
               <Button variant="ghost" size="icon" className="text-gray-400 ">
                 <User className="h-5 w-5" />
               </Button>
