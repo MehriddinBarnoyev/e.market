@@ -9,7 +9,7 @@
         },
         {
         name: "Fortnite",
-        img: "https://files.oaiusercontent.com/file-KbnNHKGqumSQLmTxpamXSf?se=2024-12-02T03%3A42%3A03Z&sp=r&sv=2024-08-04&sr=b&rscc=max-age%3D604800%2C%20immutable%2C%20private&rscd=attachment%3B%20filename%3Ddf0c062f-406e-4d26-85ad-e438c3234c52.webp&sig=z0x1tSMcKM9qRi30U7UuZWezVW922jjM8bvPJuQwubM%3D",
+        img:"https://thumbs.dreamstime.com/b/fortnite-logo-fortnite-logo-white-background-vector-format-available-ai-134361240.jpg",
         description: "A battle royale game known for its building mechanics.",
         category: "Battle Royale",
         releaseYear: 2017,

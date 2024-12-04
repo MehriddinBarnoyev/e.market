@@ -1,127 +1,72 @@
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { GamepadIcon as GameController, Smartphone } from "lucide-react";
+"use client";
+
+import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { Card } from "@/components/ui/card";
 import Image from "next/image";
-
-interface GridItem {
-  id: string;
-  name: string;
-  icon: string;
-}
-
-const games: GridItem[] = [
-  { id: "1", name: "Among Us", icon: "/placeholder.svg?height=48&width=48" },
-  {
-    id: "2",
-    name: "Call of Duty",
-    icon: "/placeholder.svg?height=48&width=48",
-  },
-  {
-    id: "3",
-    name: "Counter-Strike",
-    icon: "/placeholder.svg?height=48&width=48",
-  },
-  { id: "4", name: "Cyberpunk", icon: "/placeholder.svg?height=48&width=48" },
-  { id: "5", name: "DayZ", icon: "/placeholder.svg?height=48&width=48" },
-  {
-    id: "6",
-    name: "Dead by Daylight",
-    icon: "/placeholder.svg?height=48&width=48",
-  },
-  // Add more games as needed
-];
-
-const apps: GridItem[] = [
-  { id: "1", name: "App Store", icon: "/placeholder.svg?height=48&width=48" },
-  { id: "2", name: "Discord", icon: "/placeholder.svg?height=48&width=48" },
-  { id: "3", name: "PlayStation", icon: "/placeholder.svg?height=48&width=48" },
-  { id: "4", name: "Spotify", icon: "/placeholder.svg?height=48&width=48" },
-  { id: "5", name: "Steam", icon: "/placeholder.svg?height=48&width=48" },
-  { id: "6", name: "Telegram", icon: "/placeholder.svg?height=48&width=48" },
-  // Add more apps as needed
-];
+import { cn } from "@/lib/utils";
+import games from "@/components/game-tabs";
 
 export function ContentGrid() {
   return (
-    <div className="p-6 space-y-6">
-      <div className="flex justify-between">
-        <div>
-          <h2 className="text-xl font-semibold mb-4">
+    <div className="p-6 space-y-8 bg-zinc-900 text-zinc-100">
+      <div className="flex justify-between items-center">
+        <div className="space-y-4">
+          <h2 className="text-3xl font-bold tracking-tight text-zinc-100">
             Добавить игру / приложение
           </h2>
-          <Tabs defaultValue="games" className="">
-            <TabsList className="bg-background ">
+          <Tabs defaultValue="games" className="w-full">
+            <TabsList className="bg-zinc-800/95 backdrop-blur supports-[backdrop-filter]:bg-zinc-800/60 p-1 rounded-xl">
               <TabsTrigger
                 value="games"
-                className="data-[state=active]:bg-muted"
+                className="px-4 py-2 rounded-lg data-[state=active]:bg-zinc-700 data-[state=active]:text-zinc-100 transition-all duration-200"
               >
                 🎮 Игры
               </TabsTrigger>
               <TabsTrigger
                 value="apps"
-                className="data-[state=active]:bg-muted"
+                className="px-4 py-2 rounded-lg data-[state=active]:bg-zinc-700 data-[state=active]:text-zinc-100 transition-all duration-200"
               >
                 📱 Приложения
               </TabsTrigger>
             </TabsList>
           </Tabs>
         </div>
-
-        <div>
-          <h2 className="text-xl font-semibold mb-4">Добавить категорию</h2>
-          <Tabs defaultValue="games">
-            <TabsList>
-              <TabsTrigger value="games">
-                <GameController className="w-4 h-4 mr-2" />
-                Игра
-              </TabsTrigger>
-              <TabsTrigger value="apps">
-                <Smartphone className="w-4 h-4 mr-2" />
-                Приложение
-              </TabsTrigger>
-            </TabsList>
-          </Tabs>
-        </div>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-        <div>
-          <h3 className="text-lg font-medium mb-4">Игры</h3>
-          <div className="grid grid-cols-4 sm:grid-cols-6 lg:grid-cols-8 gap-4">
-            {games.map((game) => (
-              <div
-                key={game.id}
-                className="aspect-square rounded-lg bg-zinc-800 p-2 flex items-center justify-center hover:bg-zinc-700 transition-colors cursor-pointer"
-              >
-                <Image
-                  src={game.icon}
-                  alt={game.name}
-                  width={48}
-                  height={48}
-                  className="w-12 h-12 object-contain"
-                />
-              </div>
-            ))}
-          </div>
+      <div className="space-y-6">
+        <div className="flex items-center justify-between">
+          <h3 className="text-xl font-semibold text-zinc-200">Игры</h3>
         </div>
-
-        <div>
-          <h3 className="text-lg font-medium mb-4">Приложения</h3>
-          <div className="grid grid-cols-4 sm:grid-cols-6 lg:grid-cols-8 gap-4">
-            {apps.map((app) => (
-              <div
-                key={app.id}
-                className="aspect-square rounded-lg bg-zinc-800 p-2 flex items-center justify-center hover:bg-zinc-700 transition-colors cursor-pointer"
-              >
-                <Image
-                  src={app.icon}
-                  alt={app.name}
-                  width={48}
-                  height={48}
-                  className="w-12 h-12 object-contain"
-                />
+        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-6">
+          {games.map((game) => (
+            <Card
+              key={game.name}
+              className="group relative cursor-pointer overflow-hidden rounded-xl border-2 border-zinc-800 bg-gradient-to-br from-zinc-800 to-zinc-900 transition-all duration-300 hover:border-zinc-600 hover:shadow-lg hover:shadow-zinc-700/30 hover:-translate-y-1"
+            >
+              <div className="relative aspect-square p-6">
+                <div className="absolute inset-0 flex items-center justify-center bg-zinc-900/30 transition-all duration-300 group-hover:bg-zinc-900/10">
+                  <div className="relative">
+                    <div className="absolute inset-0 bg-zinc-500 rounded-full blur-md opacity-0 group-hover:opacity-30 transition-opacity duration-300"></div>
+                    <Image
+                      src={game.img}
+                      alt={game.name}
+                      width={70}
+                      height={70}
+                      className={cn(
+                        "relative z-10 h-16 w-16 object-contain transition-all duration-300 group-hover:scale-110",
+                        "drop-shadow-[0_0_10px_rgba(255,255,255,0.1)]"
+                      )}
+                    />
+                  </div>
+                </div>
               </div>
-            ))}
-          </div>
+              <div className="p-4 pt-0">
+                <h3 className="text-sm font-medium text-center truncate text-zinc-300 group-hover:text-zinc-100 transition-colors duration-300">
+                  {game.name}
+                </h3>
+              </div>
+            </Card>
+          ))}
         </div>
       </div>
     </div>

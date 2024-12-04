@@ -164,7 +164,7 @@ export default function GameCard() {
           href={`/product-info?name=${encodeURIComponent(product.platform)}`}
         >
           <Card
-            key={product.id}
+            key={index}
             className="bg-zinc-900 border-zinc-800 overflow-hidden hover:shadow-slate-50 hover:translate-y-[-5px] transition-transform"
             
           >

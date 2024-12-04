@@ -17,6 +17,7 @@ const domains = [
   "static.vecteezy.com",
   "img.freepik.com",
   "images.immediate.co.uk",
+  "thumbs.dreamstime.com",
 ];
 const nextConfig: NextConfig = {
   images: {

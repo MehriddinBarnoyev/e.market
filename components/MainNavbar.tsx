@@ -22,15 +22,15 @@ export function MainNavbar() {
         <div className="flex items-center justify-between h-16">
           <div className="flex items-center space-x-2">
             <div className="relative w-10 h-10">
-             <Link href={"/"}>
-             <Image
-                src="https://r1creative.net/wp-content/uploads/2017/09/R1-Creative-Hell-Rell-Logo.jpg"
-                alt="Logo"
-                width={40}
-                height={40}
-                className="rounded-md object-contain"
-              />
-             </Link>
+              <Link href={"/"}>
+                <Image
+                  src="https://r1creative.net/wp-content/uploads/2017/09/R1-Creative-Hell-Rell-Logo.jpg"
+                  alt="Logo"
+                  width={40}
+                  height={40}
+                  className="rounded-md object-contain"
+                />
+              </Link>
             </div>
             <span className="text-sm bg-[#1e1e1e] text-white rounded px-2 py-1">
               ⭐ 5.0
@@ -47,17 +47,19 @@ export function MainNavbar() {
             </div>
           </div>
           <div className="flex items-center space-x-4">
-            <Button variant="ghost" size="icon" className="text-gray-400 ">
-              <Plus className="h-5 w-5" />
-            </Button>
+            <Link href={"/sell/terms-of-sale"}>
+              <Button variant="ghost" size="icon" className="text-gray-400 ">
+                <Plus className="h-5 w-5" />
+              </Button>
+            </Link>
+
             <Button variant="ghost" size="icon" className="text-gray-400 ">
               <MessageSquare className="h-5 w-5" />
             </Button>
             <Link href={"profile"}>
-            <Button variant="ghost" size="icon" className="text-gray-400 ">
-              <User className="h-5 w-5" />
-             
-            </Button>
+              <Button variant="ghost" size="icon" className="text-gray-400 ">
+                <User className="h-5 w-5" />
+              </Button>
             </Link>
           </div>
         </div>
