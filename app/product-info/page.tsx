@@ -1,15 +1,13 @@
-"use client";
+import games from '@/components/game-tabs'
+import GamesTabs from '@/components/GamesTabs'
 
-import React from "react";
 
-const Page = () => {
-  
-    return (
-      <div>
-        <h1>Product Info</h1>
-        
-      </div>
-    );
-};
+export default function Page() {
+  return (
+    <main className="container mx-auto px-4 py-8">
+      <h1 className="text-2xl font-bold mb-6">Our Games and Apps</h1>
+      <GamesTabs games={games} />
+    </main>
+  )
+}
 
-export default Page;

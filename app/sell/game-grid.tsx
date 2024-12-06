@@ -73,9 +73,12 @@ export function GameGrid() {
         </Button>
       </div>
 
-      <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 xl:grid-cols-8 gap-4" key={"something"}>
+      <div
+        className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 xl:grid-cols-8 gap-4"
+        key={"something"}
+      >
         {games.slice(0, 10).map((game) => (
-          <Link href={`/product-info?${game.id}`}>
+          <Link href={`/product-info/${game.id}`}>
             <div
               key={game.id}
               className="group relative aspect-square cursor-pointer rounded-lg overflow-hidden hover:ring-2 hover:ring-blue-700 transition-all"

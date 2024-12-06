@@ -52,10 +52,11 @@ export function MainNavbar() {
                 <Plus className="h-5 w-5" />
               </Button>
             </Link>
-
-            <Button variant="ghost" size="icon" className="text-gray-400 ">
-              <MessageSquare className="h-5 w-5" />
-            </Button>
+            <Link href={"/chats"}>
+              <Button variant="ghost" size="icon" className="text-gray-400 ">
+                <MessageSquare className="h-5 w-5" />
+              </Button>
+            </Link>
             <Link href={"user-profile"}>
               <Button variant="ghost" size="icon" className="text-gray-400 ">
                 <User className="h-5 w-5" />

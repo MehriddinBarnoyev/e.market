@@ -48,7 +48,7 @@ export default function GameCard() {
       platformIcon:
         "https://devforum-uploads.s3.dualstack.us-east-2.amazonaws.com/uploads/optimized/4X/f/7/c/f7c9f2a9f31bf5748c52fa1087126828a5333ac8_2_500x500.png",
       category: "Аккаунты",
-      title: "Жирный акк Blox Fruits с пермами",
+      title: "Жирный акк Blox Fruits с пермами Cosmic / Подарок",
       image:
         "https://images.immediate.co.uk/production/volatile/sites/3/2022/12/Marvel-Snap-ae48df0.jpg?quality=90&resize=660,440",
       price: 2149,
@@ -64,7 +64,7 @@ export default function GameCard() {
       platformIcon:
         "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4e/Playstation_logo_colour.svg/1280px-Playstation_logo_colour.svg.png",
       category: "Пополнение бумажника",
-      title: "100 ЛИР | PLAYSTATION",
+      title: "100 ЛИР | PLAYSTATION Cosmic / Подарок",
       image:
         "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4e/Playstation_logo_colour.svg/1280px-Playstation_logo_colour.svg.png",
       price: 649,
@@ -96,7 +96,7 @@ export default function GameCard() {
       platformIcon:
         "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4e/Playstation_logo_colour.svg/1280px-Playstation_logo_colour.svg.png",
       category: "Пополнение бумажника",
-      title: "100 ЛИР | PLAYSTATION",
+      title: "100 ЛИР | PLAYSTATION Cosmic / Подарок",
       image:
         "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4e/Playstation_logo_colour.svg/1280px-Playstation_logo_colour.svg.png",
       price: 649,
@@ -144,7 +144,7 @@ export default function GameCard() {
       platformIcon:
         "https://devforum-uploads.s3.dualstack.us-east-2.amazonaws.com/uploads/optimized/4X/f/7/c/f7c9f2a9f31bf5748c52fa1087126828a5333ac8_2_500x500.png",
       category: "Аккаунты",
-      title: "Жирный акк Blox Fruits с пермами",
+      title: "Жирный акк Blox Fruits с пермами Cosmic / Подарок",
       image:
         "https://images.immediate.co.uk/production/volatile/sites/3/2022/12/Marvel-Snap-ae48df0.jpg?quality=90&resize=660,440",
       price: 2149,
@@ -158,7 +158,7 @@ export default function GameCard() {
 
   return (
     <div className="min-h-screen bg-zinc-950 p-6">
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4" key={"some"}>
         {products.map((product, index) => (
           <Link
           href={`/product-info?name=${encodeURIComponent(product.platform)}`}
