@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
@@ -27,18 +27,26 @@ interface ChatViewProps {
 
 const ChatView = ({ chat, messages, onSendMessage }: ChatViewProps) => {
   const [inputMessage, setInputMessage] = useState('')
+  const messagesEndRef = useRef<HTMLDivElement>(null)
+
+  const scrollToBottom = () => {
+    messagesEndRef.current?.scrollIntoView({ behavior: "smooth" })
+  }
+
+  useEffect(() => {
+    scrollToBottom()
+  }, [messages])
 
   const sendMessage = () => {
     if (inputMessage.trim() === '') return
 
     onSendMessage(chat.id, inputMessage)
     setInputMessage('')
-
   }
 
   return (
     <div className="flex flex-col h-full bg-dark">
-      <div className="flex items-center gap-3 p-4 border-b border-gray-800">
+      <div className="hidden lg:flex items-center gap-3 p-4 border-b border-gray-800">
         <Avatar>
           <AvatarImage src={`https://i.pravatar.cc/100?u=${chat.id}`} />
           <AvatarFallback>{chat.name.charAt(0)}</AvatarFallback>
@@ -67,6 +75,7 @@ const ChatView = ({ chat, messages, onSendMessage }: ChatViewProps) => {
             </div>
           </div>
         ))}
+        <div ref={messagesEndRef} />
       </ScrollArea>
       <div className="p-4 border-t border-gray-800">
         <form

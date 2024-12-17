@@ -1,8 +1,12 @@
+"use client"
+
 import Image from "next/image";
-import { Search, Plus, MessageSquare, User } from "lucide-react";
+import { Search, Plus, MessageSquare, User } from 'lucide-react';
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import Link from "next/link";
+import { useRouter } from 'next/navigation';
+import { useAuth } from "@/hooks/useAuth";
 
 const categories = [
   "Донат",
@@ -16,6 +20,18 @@ const categories = [
 ];
 
 export function MainNavbar() {
+  const router = useRouter();
+  const { user, isLoading } = useAuth();
+
+  const handleUserIconClick = () => {
+    if (isLoading) return;
+    if (user) {
+      router.push('/user-profile');
+    } else {
+      router.push('/auth');
+    }
+  };
+
   return (
     <nav className="bg-[#000] border-b border-border ">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -57,14 +73,18 @@ export function MainNavbar() {
                 <MessageSquare className="h-5 w-5" />
               </Button>
             </Link>
-            <Link href={"user-profile"}>
-              <Button variant="ghost" size="icon" className="text-gray-400 ">
-                <User className="h-5 w-5" />
-              </Button>
-            </Link>
+            <Button 
+              variant="ghost" 
+              size="icon" 
+              className="text-gray-400"
+              onClick={handleUserIconClick}
+            >
+              <User className="h-5 w-5" />
+            </Button>
           </div>
         </div>
       </div>
     </nav>
   );
 }
+

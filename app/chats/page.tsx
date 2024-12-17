@@ -1,14 +1,14 @@
-'use client'
+"use client";
 
-import { useState, useEffect, useCallback } from "react"
-import { useRouter, useSearchParams } from "next/navigation"
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
-import { Button } from "@/components/ui/button"
-import { Input } from "@/components/ui/input"
-import { ScrollArea } from "@/components/ui/scroll-area"
-import { Search } from 'lucide-react'
-import ChatView from "./component/chat-view"
-import { Chat, Message } from "./types/chat"
+import { useState, useEffect, useCallback } from "react";
+import { useRouter, useSearchParams } from "next/navigation";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { ScrollArea } from "@/components/ui/scroll-area";
+import { Search, Menu, X } from "lucide-react";
+import ChatView from "./component/chat-view";
+import { Chat, Message } from "./types/chat";
 
 const users: Chat[] = [
   {
@@ -46,91 +46,116 @@ const users: Chat[] = [
     time: "Пт",
     unread: 3,
   },
-]
+];
 
 export default function ChatsPage() {
-  const [chats, setChats] = useState<Chat[]>(users)
-  const [searchTerm, setSearchTerm] = useState("")
-  const [chatMessages, setChatMessages] = useState<{ [chatId: number]: Message[] }>({})
-  const router = useRouter()
-  const searchParams = useSearchParams()
-  const selectedChatId = searchParams.get("chatId")
+  const [chats, setChats] = useState<Chat[]>(users);
+  const [searchTerm, setSearchTerm] = useState("");
+  const [chatMessages, setChatMessages] = useState<{
+    [chatId: number]: Message[];
+  }>({});
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+  const router = useRouter();
+  const searchParams = useSearchParams();
+  const selectedChatId = searchParams.get("chatId");
 
-  const selectedChat = chats.find(chat => chat.id === Number(selectedChatId))
+  const selectedChat = chats.find((chat) => chat.id === Number(selectedChatId));
 
   const filteredChats = chats.filter(
     (chat) =>
       chat.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
       chat.message.toLowerCase().includes(searchTerm.toLowerCase())
-  )
+  );
 
   const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setSearchTerm(e.target.value)
-  }
+    setSearchTerm(e.target.value);
+  };
 
   const handleChatClick = (chat: Chat) => {
-    router.push(`/chats?chatId=${chat.id}`)
-    setChats(prevChats =>
-      prevChats.map(c =>
-        c.id === chat.id ? { ...c, unread: 0 } : c
-      )
-    )
-  }
+    router.push(`/chats?chatId=${chat.id}`);
+    setChats((prevChats) =>
+      prevChats.map((c) => (c.id === chat.id ? { ...c, unread: 0 } : c))
+    );
+    setIsSidebarOpen(false);
+  };
 
-  const handleSendMessage = useCallback((chatId: number, message: string) => {
-    const newMessage: Message = {
-      id: Date.now(),
-      senderId: 0,
-      text: message,
-      timestamp: new Date()
-    }
-
-    setChatMessages(prevMessages => ({
-      ...prevMessages,
-      [chatId]: [...(prevMessages[chatId] || []), newMessage]
-    }))
-
-    setChats(prevChats =>
-      prevChats.map(chat =>
-        chat.id === chatId
-          ? { ...chat, message: message, time: 'Сейчас' }
-          : chat
-      )
-    )
-
-    // Simulate receiving a message from the other user after a short delay
-    setTimeout(() => {
-      const receivedMessage: Message = {
+  const handleSendMessage = useCallback(
+    (chatId: number, message: string) => {
+      const newMessage: Message = {
         id: Date.now(),
-        senderId: chatId,
-        text: `Это автоматический ответ на: "${message}"`,
-        timestamp: new Date()
-      }
-      setChatMessages(prevMessages => ({
-        ...prevMessages,
-        [chatId]: [...(prevMessages[chatId] || []), receivedMessage]
-      }))
+        senderId: 0,
+        text: message,
+        timestamp: new Date(),
+      };
 
-      setChats(prevChats =>
-        prevChats.map(chat =>
+      setChatMessages((prevMessages) => ({
+        ...prevMessages,
+        [chatId]: [...(prevMessages[chatId] || []), newMessage],
+      }));
+
+      setChats((prevChats) =>
+        prevChats.map((chat) =>
           chat.id === chatId
-            ? {
-              ...chat,
-              message: receivedMessage.text,
-              time: 'Сейчас',
-              unread: chat.id === Number(selectedChatId) ? chat.unread : chat.unread + 1
-            }
+            ? { ...chat, message: message, time: "Сейчас" }
             : chat
         )
-      )
-    }, 1000 + Math.random() * 2000)
-  }, [selectedChatId])
+      );
 
+      // Simulate receiving a message from the other user after a short delay
+      setTimeout(() => {
+        const receivedMessage: Message = {
+          id: Date.now(),
+          senderId: chatId,
+          text: `Это автоматический ответ на: "${message}"`,
+          timestamp: new Date(),
+        };
+        setChatMessages((prevMessages) => ({
+          ...prevMessages,
+          [chatId]: [...(prevMessages[chatId] || []), receivedMessage],
+        }));
+
+        setChats((prevChats) =>
+          prevChats.map((chat) =>
+            chat.id === chatId
+              ? {
+                  ...chat,
+                  message: receivedMessage.text,
+                  time: "Сейчас",
+                  unread:
+                    chat.id === Number(selectedChatId)
+                      ? chat.unread
+                      : chat.unread + 1,
+                }
+              : chat
+          )
+        );
+      }, 1000 + Math.random() * 2000);
+    },
+    [selectedChatId]
+  );
+
+  const toggleSidebar = () => {
+    setIsSidebarOpen(!isSidebarOpen);
+  };
 
   return (
     <div className="flex h-[calc(100vh-70px)] bg-dark">
-      {/* Left side - Chat List */}
-      <div className="w-[350px] flex flex-col border-r border-gray-800">
+      {/* Sidebar for mobile */}
+      <div
+        className={`fixed inset-y-0 left-0 z-50 w-64 bg-dark transform ${
+          isSidebarOpen ? "translate-x-0" : "-translate-x-full"
+        } transition-transform duration-300 ease-in-out lg:relative lg:translate-x-0 lg:w-[350px] lg:flex lg:flex-col`}
+      >
+        <div className="flex justify-between items-center  border-b border-gray-800">
+          <Button
+            variant="ghost"
+            size="icon"
+            onClick={toggleSidebar}
+            className="lg:hidden"
+          >
+            <X className="h-6 w-6 text-white" />
+          </Button>
+        </div>
         {/* Search Input */}
         <div className="p-4">
           <div className="relative">
@@ -184,21 +209,48 @@ export default function ChatsPage() {
         </div>
       </div>
 
-      {/* Right side - Chat View */}
-      <div className="flex-1">
-        {selectedChat ? (
-          <ChatView
-            chat={selectedChat}
-            messages={chatMessages[Number(selectedChatId)] || []}
-            onSendMessage={handleSendMessage}
-          />
-        ) : (
-          <div className="flex items-center justify-center h-full text-gray-400">
-            Выберите чат для начала общения
-          </div>
-        )}
+      {/* Main content */}
+      <div className="flex-1 flex flex-col">
+        {/* Top bar for mobile */}
+        <div className="lg:hidden flex items-center p-4 border-b border-gray-800">
+          <Button
+            variant="ghost"
+            size="icon"
+            onClick={toggleSidebar}
+            className="mr-2"
+          >
+            <Menu className="h-6 w-6 text-white" />
+          </Button>
+          {selectedChat && (
+            <div className="flex items-center">
+              <Avatar className="mr-2">
+                <AvatarImage
+                  src={`https://i.pravatar.cc/100?u=${selectedChat.id}`}
+                />
+                <AvatarFallback>{selectedChat.name.charAt(0)}</AvatarFallback>
+              </Avatar>
+              <h2 className="text-lg font-medium text-white">
+                {selectedChat.name}
+              </h2>
+            </div>
+          )}
+        </div>
+
+        {/* Chat View */}
+        <div className="flex-1">
+          {selectedChat ? (
+            <ChatView
+              chat={selectedChat}
+              messages={chatMessages[Number(selectedChatId)] || []}
+              onSendMessage={handleSendMessage}
+            />
+          ) : (
+            <div className="flex items-center justify-center h-full text-gray-400">
+              Выберите чат для начала общения
+            </div>
+          )}
+        </div>
       </div>
     </div>
-  )
+  );
 }
-
