@@ -10,56 +10,16 @@ type User = {
   password: string;
 };
 
-// Default 4 user va 2 admin
-const DEFAULT_USERS: User[] = [
-  // Oddiy foydalanuvchilar
-  {
-    id: "1",
-    firstName: "Ali",
-    lastName: "Valiyev",
-    email: "ali.valiyev@example.com",
-    role: "user",
-    password: "123456",
-  },
-  {
-    id: "2",
-    firstName: "Murod",
-    lastName: "Bekmurodov",
-    email: "murod.bekmurodov@example.com",
-    role: "user",
-    password: "123456",
-  },
-  // Admin foydalanuvchilar
-  {
-    id: "3",
-    firstName: "Mehriddin",
-    lastName: "Barnoyev",
-    email: "mehriddin.barnoyev@example.com",
-    role: "admin",
-    password: "123456",
-  },
-  {
-    id: "4",
-    firstName: "Dilnura",
-    lastName: "Abdurashidova",
-    email: "dilnura.abdurashidova@example.com",
-    role: "admin",
-    password: "123456",
-  },
-];
+const API_URL = "https://676112646be7889dc35fa055.mockapi.io/users";
 
 export function useAuth() {
   const [user, setUser] = useState<User | null>(null);
   const router = useRouter();
 
   useEffect(() => {
-    // LocalStorage'da foydalanuvchi borligini tekshirish
     const storedUser = localStorage.getItem("user");
     if (storedUser) {
       setUser(JSON.parse(storedUser));
-    } else {
-      // Foydalanuvchilarni dastlabki holatda saqlash
-      localStorage.setItem("default_users", JSON.stringify(DEFAULT_USERS));
     }
   }, []);
 
@@ -71,19 +31,25 @@ export function useAuth() {
     verificationCode: string
   ) => {
     try {
-      // Yangi foydalanuvchini ro'yxatdan o'tkazish
-      const newUser: User = {
-        id: Date.now().toString(),
-        firstName,
-        lastName,
-        email,
-        role: "user",
-        password,
-      };
+      const response = await fetch(API_URL, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          firstName,
+          lastName,
+          email,
+          password,
+          role: 'user',
+        }),
+      });
 
-      const users = JSON.parse(localStorage.getItem("default_users") || "[]");
-      users.push(newUser);
-      localStorage.setItem("default_users", JSON.stringify(users));
+      if (!response.ok) {
+        throw new Error('Registration failed');
+      }
+
+      const newUser: User = await response.json();
       localStorage.setItem("user", JSON.stringify(newUser));
       setUser(newUser);
 
@@ -96,17 +62,22 @@ export function useAuth() {
 
   const login = async (email: string, password: string) => {
     try {
-      const users = JSON.parse(localStorage.getItem("default_users") || "[]");
-      const existingUser = users.find((user: User) => user.email === email);
+      const response = await fetch(`${API_URL}?email=${email}`);
+      if (!response.ok) {
+        throw new Error('Login failed');
+      }
+
+      const users: User[] = await response.json();
+      const existingUser = users.find(user => user.email === email && user.password === password);
 
       if (!existingUser) {
-        throw new Error("Login failed: User not found");
+        throw new Error("Login failed: Invalid credentials");
       }
+
       localStorage.setItem("user", JSON.stringify(existingUser));
       setUser(existingUser);
 
       return existingUser;
-
     } catch (error) {
       console.error("Login error:", error);
       throw error;

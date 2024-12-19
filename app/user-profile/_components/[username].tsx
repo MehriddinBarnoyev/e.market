@@ -5,14 +5,20 @@ import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
 import { Menu, Share2 } from "lucide-react";
 import Link from "next/link";
 
+
+const userObj =JSON
+console.log(userObj);
+
+
 export default function ProfilePage() {
+
   return (
     <div className="min-h-screen bg-black text-white">
       {/* Header */}
       <div className="flex items-center justify-between p-4 border-b border-gray-800">
         <div className="flex items-center gap-2">
           <Menu className="h-6 w-6" />
-          <h1 className="text-lg font-medium">Профиль</h1>
+          <h1 className="text-lg font-medium">{userObj.firstname}</h1>
         </div>
         <Share2 className="h-6 w-6" />
       </div>

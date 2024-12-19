@@ -6,7 +6,7 @@ import { Input } from "@/components/ui/input";
 import { useRouter } from "next/navigation";
 import { useAuth } from "@/hooks/useAuth";
 import { motion } from "framer-motion";
-import { AtSign, Lock, User, Users, Send } from 'lucide-react';
+import { AtSign, Lock, User, Users, Send } from "lucide-react";
 import Link from "next/link";
 
 export default function Register() {
@@ -25,29 +25,28 @@ export default function Register() {
     setError("");
     try {
       await register(firstName, lastName, email, password, verificationCode);
-      router.push("/profile");
+      router.push("/user-profile");
     } catch (err) {
-      setTimeout(() => {
-        setError(
-          "Произошла ошибка при регистрации. Пожалуйста, попробуйте еще раз."
-        );
-
-        setTimeout(() => {
-          setError("");
-        }, 2000);
-      }, 2000);
+      setError(
+        "Произошла ошибка при регистрации. Пожалуйста, попробуйте еще раз."
+      );
+      setTimeout(() => setError(""), 2000);
     }
   };
 
   const handleSendCode = async () => {
     try {
-      // Here you would typically call an API to send the verification code
-      // For this example, we'll just simulate it with a timeout
-      await new Promise(resolve => setTimeout(resolve, 1000));
+      // Simulate sending a verification code
+      await new Promise((resolve) => setTimeout(resolve, 1000));
       setIsCodeSent(true);
-      // You might want to show a success message here
     } catch (err) {
-      setError("Ошибка при отправке кода. Пожалуйста, попробуйте еще раз.");
+      setTimeout(
+        () =>
+          setError(
+            "Произошла ошибка при отправке кода. Пожалуйста, попробуйте еще раз."
+          ),
+        2000
+      );
     }
   };
 
@@ -75,7 +74,7 @@ export default function Register() {
                 type="text"
                 required
                 className="pl-10 bg-gray-700 text-white border-gray-600 focus:border-indigo-500 focus:ring-indigo-500"
-                placeholder="Имя"
+                placeholder="Full name"
                 value={firstName}
                 onChange={(e) => setFirstName(e.target.value)}
               />
@@ -89,7 +88,7 @@ export default function Register() {
                 type="text"
                 required
                 className="pl-10 bg-gray-700 text-white border-gray-600 focus:border-indigo-500 focus:ring-indigo-500"
-                placeholder="Фамилия"
+                placeholder="username"
                 value={lastName}
                 onChange={(e) => setLastName(e.target.value)}
               />
@@ -178,4 +177,3 @@ export default function Register() {
     </div>
   );
 }
-

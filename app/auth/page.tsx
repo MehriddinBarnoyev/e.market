@@ -7,7 +7,7 @@ import { Checkbox } from "@/components/ui/checkbox";
 import { useRouter } from "next/navigation";
 import { useAuth } from "@/hooks/useAuth";
 import { motion } from "framer-motion";
-import { AtSign, Lock, Github, Twitter } from "lucide-react";
+import { AtSign, Lock, Github, Twitter } from 'lucide-react';
 import Link from "next/link";
 
 export default function Auth() {
@@ -24,7 +24,7 @@ export default function Auth() {
     try {
       const user = await login(email, password);
       if (user) {
-        if (user.isAdmin) {
+        if (user.role === "admin") {
           router.push("/user-profile");
         } else {
           router.push("/profile");
@@ -33,9 +33,7 @@ export default function Auth() {
         setError("Неверные учетные данные");
       }
     } catch (err) {
-      setTimeout(() => {
-        setError("Произошла ошибка при входе. Пожалуйста, попробуйте еще раз.");
-      }, 2000);
+      setError("Произошла ошибка при входе. Пожалуйста, попробуйте еще раз.");
     }
   };
 
@@ -169,3 +167,4 @@ export default function Auth() {
     </div>
   );
 }
+
